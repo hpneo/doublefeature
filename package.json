@@ -2,7 +2,7 @@
   "name": "doublefeature",
   "version": "2.0.0",
   "description": "Double Feature is a simple movie organizer for Windows and Mac, designed for small and medium-sized collections.",
-  "main": "index.html",
+  "main": "app://doublefeature/index.html",
   "repository": {
     "type": "git",
     "url": "git@github.com:HPNeo/doublefeature.git"
@@ -20,10 +20,10 @@
   "single-instance": true,
   "window": {
     "title": "Double Feature",
-    "width": 800,
-    "height": 590,
-    "min_width": 580,
-    "min_height": 490,
+    "width": 900,
+    "height": 530,
+    "min_width": 560,
+    "min_height": 530,
     "toolbar": true,
     "position": "center",
     "show": true

@@ -1,0 +1,24 @@
+.treeview {
+  width: 200px;
+  height: 100%;
+  border-right: solid 1px #ccc;
+  background: rgb(233, 232, 233);
+  padding: 5px;
+  overflow: auto;
+}
+
+.treeview dl {
+  margin: 0;
+  padding: 0;
+}
+
+.treeview dt {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.treeview dd {
+  margin: 0;
+  padding: 0;
+  margin-left: 10px;
+}

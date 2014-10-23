@@ -1,0 +1,63 @@
+.toolbar {
+  border-bottom: solid 1px #a9a9a9;
+  height: 37px;
+  line-height: 31px;
+  padding: 1px 4px;
+  cursor: default;
+}
+
+.toolbar .toolbar_item {
+  display: inline-block;
+  height: 31px;
+  vertical-align: middle;
+  padding: 0 8px;
+  border: solid 1px transparent;
+  border-radius: 2px;
+  margin-top: 0px;
+}
+
+.toolbar .toolbar_item.toolbar_item_button:hover {
+}
+
+.toolbar .toolbar_item.toolbar_item_button:active {
+}
+
+.toolbar .toolbar_item.at_right {
+  float: right;
+}
+
+.toolbar .toolbar_item.separator {
+  width: 0px;
+  height: 28px;
+  border-left: solid 1px #c0c0c0;
+  border-right: solid 1px #fafafa;
+  padding: 0;
+  margin: 0;
+}
+
+.toolbar .toolbar_item.icon_only {
+  padding: 0 4px;
+}
+
+.toolbar .toolbar_item input {
+  font-size: 12px;
+  border-radius: 3px;
+  padding: 3px 6px;
+  border: inset 1px #f4f4f4;
+  width: 180px;
+}
+
+.toolbar .toolbar_item span {
+  min-width: 0px;
+}
+
+.toolbar .toolbar_item span:before {
+  display: inline-block;
+  content: "";
+  width: 32px;
+  height: 24px;
+}
+
+.toolbar .toolbar_item.icon_only span:before {
+  width: 24px;
+}

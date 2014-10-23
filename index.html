@@ -2,14 +2,142 @@
 <html>
 <head>
   <title>Double Feature</title>
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/layout.css">
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/toolbar.css">
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/treeview.css">
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/listview.css">
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/statusbar.css">
+  <script>
+    var uiToolbar = document.createElement('link');
+    uiToolbar.setAttribute('rel', 'stylesheet');
+    uiToolbar.setAttribute('type', 'text/css');
+
+    if (process.platform === 'darwin') {
+      uiToolbar.setAttribute('href', '/assets/stylesheets/mac/toolbar.css');
+    }
+    else if (process.platform === 'win32') {
+      uiToolbar.setAttribute('href', '/assets/stylesheets/windows/toolbar.css');
+    }
+
+    document.head.appendChild(uiToolbar);
+  </script>
 </head>
 <body>
-  <h1>Double Feature</h1>
-  Node:
-  <br>
-  <script>document.write(process.version);</script>
-  <br>
-  Version:
-  <script>document.write(require('./package').version);</script>
+  <nav class="toolbar">
+    <div class="toolbar_item toolbar_item_button dropdown" id="add" title="Add">
+      <span>Add</span>
+    </div>
+    <div class="toolbar_item toolbar_item_button dropdown" id="add_list" title="Add list">
+      <span>Add list</span>
+    </div>
+    <div class="toolbar_item at_right" id="search_form">
+      <label for="search">Search:</label>
+      <input type="text" id="search" placeholder="Search for a movie">
+    </div>
+  </nav>
+  <div class="library_wrapper">
+    <aside id="sidebar" class="treeview">
+      <dl>
+        <dt>Genres</dt>
+        <dd>All</dd>
+        <dd>Action</dd>
+        <dd>Adventure</dd>
+        <dd>Animation</dd>
+        <dd>Comedy</dd>
+        <dd>Crime</dd>
+        <dd>Documentary</dd>
+        <dd>Drama</dd>
+        <dd>Fantasy</dd>
+        <dd>History</dd>
+        <dd>Horror</dd>
+        <dd>Music</dd>
+        <dd>Musical</dd>
+        <dd>Mystery</dd>
+        <dd>Road Movie</dd>
+      </dl>
+      <dl>
+        <dt>Lists</dt>
+        <dd>All</dd>
+        <dd>Kubrick</dd>
+        <dd>Marvel Studios</dd>
+        <dd>Noir</dd>
+        <dd>Space movies</dd>
+        <dd>Tarantino</dd>
+        <dd>WWII</dd>
+      </dl>
+    </aside>
+    <section id="library" class="listview">
+      <div class="listview_item">
+        <img src="https://image.tmdb.org/t/p/w130/kb3X943WMIJYVg4SOAyK0pmWL5D.jpg" class="poster">
+        <span>12 Years a Slave</span>
+      </div>
+      <div class="listview_item">
+        <img src="https://image.tmdb.org/t/p/w130/oai3xLBQHpIh18VJdRCcL7D0Yg0.jpg" class="poster">
+        <span>Argo</span>
+      </div>
+      <div class="listview_item">
+        <img src="https://image.tmdb.org/t/p/w130/3nnKjnTu347oHrZttoBtK5G2KSJ.jpg" class="poster">
+        <span>The Descendants</span>
+      </div>
+      <div class="listview_item">
+        <img src="https://image.tmdb.org/t/p/w130/hKTwHT6WtYhtG8U2PJQSQH2y4oD.jpg" class="poster">
+        <span>The Social Network</span>
+      </div>
+      <div class="listview_item">
+        <img src="https://image.tmdb.org/t/p/w130/tcqb9NHdw9SWs2a88KCDD4V8sVR.jpg" class="poster">
+        <span>Avatar</span>
+      </div>
+      <div class="listview_item">
+        <img src="https://image.tmdb.org/t/p/w130/ojgf8iJpS4VX6jJfWGLpuEx0wm.jpg" class="poster">
+        <span>Slumdong Millonaire</span>
+      </div>
+      <div class="listview_item">
+        <img src="https://image.tmdb.org/t/p/w130/quaWuwYZd8IbZMCOhW3CZEvyCWJ.jpg" class="poster">
+        <span>Atonement</span>
+      </div>
+      <div class="listview_item">
+        <img src="https://image.tmdb.org/t/p/w130/fxneN0EQZwTfAfhTGUvUuIn6PLi.jpg" class="poster">
+        <span>Babel</span>
+      </div>
+      <div class="listview_item">
+        <img src="https://image.tmdb.org/t/p/w130/hmBG09xDFK1n1czJ74BvfnSlxDI.jpg" class="poster">
+        <span>Brokeback Mountain</span>
+      </div>
+      <div class="listview_item">
+        <img src="https://image.tmdb.org/t/p/w130/1cT3LP4pzZEQ0DLrEL8jdpA8NKd.jpg" class="poster">
+        <span>The Aviator</span>
+      </div>
+      <div class="listview_item">
+        <img src="https://image.tmdb.org/t/p/w130/50LoR9gJhbWZ5PpoHgi8MNTYgzd.jpg" class="poster">
+        <span>Lord of the Rings</span>
+      </div>
+      <div class="listview_item">
+        <img src="https://image.tmdb.org/t/p/w130/vRTqBRCLGiZNITXfdhGZd3tZ7Qh.jpg" class="poster">
+        <span>The Hours</span>
+      </div>
+      <div class="listview_item">
+        <img src="https://image.tmdb.org/t/p/w130/4SFqHDZ1NvWdysucWbgnYlobdxC.jpg" class="poster">
+        <span>A Beautiful Mind</span>
+      </div>
+      <div class="listview_item">
+        <img src="https://image.tmdb.org/t/p/w130/6WBIzCgmDCYrqh64yDREGeDk9d3.jpg" class="poster">
+        <span>Gladiator</span>
+      </div>
+      <div class="listview_item">
+        <img src="https://image.tmdb.org/t/p/w130/3UBQGKS8c1dxRnDiu5kUK6ej3pP.jpg" class="poster">
+        <span>American Beauty</span>
+      </div>
+    </section>
+  </div>
+  <nav class="statusbar">
+    <div class="statusbar_item statusbar_button" title="Add">+</div>
+    <div class="statusbar_item statusbar_button icon_only" id="toggle_sidebar" title="Toggle sidebar">
+      <span></span>
+    </div>
+    <span class="statusbar_item statusbar_label">15 movies</span>
+    <div class="statusbar_item statusbar_button at_right icon_only" id="settings" title="Settings">
+      <span></span>
+    </div>
+  </nav>
 </body>
 </html>

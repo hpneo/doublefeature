@@ -1,0 +1,70 @@
+.statusbar {
+  background: #eeeeee;
+  height: 24px;
+  line-height: 24px;
+  box-shadow: none;
+  padding: 0;
+  border-top: solid 1px #a3a3a3; /*#272727*/
+  background: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+}
+
+.statusbar .statusbar_item {
+  display: block;
+  float: left;
+  height: 24px;
+  line-height: 24px;
+  vertical-align: middle;
+  padding: 0 8px;
+}
+
+.statusbar .statusbar_label {
+  width: calc(100% - 78px);
+  text-align: center;
+}
+
+.statusbar .statusbar_button {
+  min-width: 24px;
+  text-align: center;
+  border-right: solid 1px #a3a3a3;
+  padding: 0 6px;
+  background: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+}
+
+.statusbar .statusbar_button:active {
+  background: -webkit-linear-gradient(bottom, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+}
+
+.statusbar .statusbar_button.at_right {
+  float: right;
+  border-left: solid 1px #a3a3a3;
+  border-right: none;
+}
+
+.statusbar .statusbar_item span {
+  font-size: 0px;
+}
+
+.statusbar .statusbar_item span:before {
+  display: inline-block;
+  content: "";
+  width: 32px;
+  height: 24px;
+}
+
+.statusbar .statusbar_item.icon_only {
+  padding: 0 2px;
+}
+
+.statusbar .statusbar_item.icon_only span:before {
+  width: 18px;
+}
+
+.statusbar #settings span:before {
+  background: url('/assets/images/mono/settings.svg') no-repeat left center;
+  background-size: 16px 14px;
+}
+
+.statusbar #toggle_sidebar span:before {
+  background: url('/assets/images/mono/menu.svg') no-repeat left center;
+  background-size: 16px 16px;
+}

@@ -1,0 +1,69 @@
+.toolbar {
+  background: #d5d5d5;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  padding: 1px 6px;
+}
+
+.toolbar .toolbar_item.toolbar_item_button {
+  height: 27px;
+  background: #fbfbfb;
+  border: solid 1px #f4f4f4;
+  box-shadow: 0 1px 1px rgba(50, 50, 50, 0.3);
+  padding: 0 4px;
+  margin: 0 2px;
+}
+
+.toolbar .toolbar_item.toolbar_item_button span {
+  font-size: 0px;
+}
+
+.toolbar .toolbar_item.toolbar_item_button:active {
+  background: none;
+  border: solid 1px transparent;
+  box-shadow: none;
+}
+
+.toolbar .toolbar_item.separator {
+  border-left: solid 1px transparent;
+  border-right: solid 1px transparent;
+}
+
+.toolbar .toolbar_item input {
+  background: #ffffff;
+  border: solid 1px #f4f4f4;
+  box-shadow: 0 1px 1px rgba(50, 50, 50, 0.3);
+  width: 240px;
+}
+
+.toolbar .toolbar_item label {
+  display: none;
+}
+
+.toolbar .toolbar_item span:before {
+  width: 24px;
+  height: 24px;
+}
+
+.toolbar .toolbar_item.toolbar_item_button span:before {
+  margin-top: -8px;
+  vertical-align: middle;
+}
+
+.toolbar #add span:before {
+  background: url('/assets/images/mono/add.svg') no-repeat left center;
+  background-size: 24px 22px;
+}
+
+.toolbar #add_list span:before {
+  background: url('/assets/images/mono/add_list.svg') no-repeat left center;
+  background-size: 24px 22px;
+}
+
+.toolbar #settings span:before {
+  background: url('/assets/images/mono/settings.svg') no-repeat left center;
+  background-size: 24px 22px;
+}
+
+.focus_out .toolbar {
+  background: rgb(246, 246, 246);
+}

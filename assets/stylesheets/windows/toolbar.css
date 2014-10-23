@@ -1,0 +1,96 @@
+.toolbar {
+  border-bottom: solid 1px #a9a9a9;
+  height: 37px;
+  line-height: 31px;
+  padding: 1px 4px;
+  cursor: default;
+  background: -webkit-linear-gradient(top, #fbfbfb 20%, #f2f2f2 100%);
+  /*background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #ffffff), color-stop(50%, #f6f6f6), color-stop(52%, #eeeeee), color-stop(100%, #f4f4f4));
+  background: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+  background: linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);*/
+}
+
+.toolbar .toolbar_item {
+  display: inline-block;
+  height: 31px;
+  vertical-align: middle;
+  padding: 0 8px;
+  border: solid 1px transparent;
+  border-radius: 2px;
+  margin-top: 0px;
+}
+
+.toolbar .toolbar_item.toolbar_item_button:hover {
+  background: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+  border: solid 1px #d9d9d9;
+}
+
+.toolbar .toolbar_item.toolbar_item_button:active {
+  background: -webkit-linear-gradient(bottom, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+  border: inset 1px #f4f4f4;
+}
+
+.toolbar .toolbar_item.at_right {
+  float: right;
+}
+
+.toolbar .toolbar_item.separator {
+  width: 0px;
+  height: 28px;
+  border-left: solid 1px #c0c0c0;
+  border-right: solid 1px #fafafa;
+  padding: 0;
+  margin: 0;
+}
+
+.toolbar .toolbar_item.icon_only {
+  padding: 0 4px;
+}
+
+.toolbar .toolbar_item input {
+  font-size: 12px;
+  border-radius: 3px;
+  padding: 3px 6px;
+  border: inset 1px #f4f4f4;
+  width: 180px;
+}
+
+.toolbar .toolbar_item span {
+  min-width: 0px;
+}
+
+.toolbar .toolbar_item span:before {
+  display: inline-block;
+  content: "";
+  width: 32px;
+  height: 24px;
+}
+
+.toolbar .toolbar_item.icon_only span:before {
+  width: 24px;
+}
+
+.toolbar #add span:before {
+  background: url('/assets/images/color/add.png') no-repeat left center;
+  background-size: 24px 24px;
+  margin-top: -5px;
+  vertical-align: middle;
+}
+
+.toolbar #add_list span:before {
+  background: url('/assets/images/color/add_list.png') no-repeat left center;
+  background-size: 24px 24px;
+  margin-top: -5px;
+  vertical-align: middle;
+}
+
+.toolbar #settings span:before {
+  background: url('/assets/images/color/settings.png') no-repeat left center;
+  background-size: 24px 24px;
+  margin-top: -5px;
+  vertical-align: middle;
+}
+
+::-webkit-input-placeholder {
+  font-style: italic;
+}
