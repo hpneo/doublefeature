@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Movie info</title>
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/layout.css">
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/statusbar.css">
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/forms.css">
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/tabs.css">
+</head>
+<body id="movie_view">
+  <header id="backdrop"></header>
+  <nav class="tabs">
+    <a href="#" class="active">Info</a>
+    <a href="#">Comments</a>
+    <a href="#">Tags</a>
+    <a href="#">Lists</a>
+  </nav>
+  <section class="tab_page active">
+    <form action="#" method="post" class="movie_wrapper">
+      <fieldset>
+        <div>
+          <label for="movie_title">Title</label>
+          <input type="text" id="movie_title" name="movie[title]">
+        </div>
+        <div>
+          <label for="movie_year">Year</label>
+          <input type="number" id="movie_year" name="movie[year]" min="1867" step="1" max="2014">
+        </div>
+        <div>
+          <label for="movie_director">Director</label>
+          <input type="text" id="movie_director" name="movie[director]">
+        </div>
+        <div>
+          <label for="movie_tagline">Tagline</label>
+          <input type="text" id="movie_tagline" name="movie[tagline]">
+        </div>
+        <div>
+          <label for="movie_genres" id="movie_genres_label">Genres</label>
+          <select id="movie_genres" name="movie[genres]" multiple size="6">
+            <option>Action</option>
+            <option>Adventure</option>
+            <option>Animation</option>
+            <option>Blaxploitation</option>
+            <option>Comedy</option>
+            <option>Crime</option>
+            <option>Documentary</option>
+            <option>Drama</option>
+          </select>
+        </div>
+        <div>
+          <label for="movie_rating" id="movie_rating_label">Rating</label>
+          <ul class="radio_group">
+            <li><input type="radio" id="movie_rating_1" name="movie[rating]" value="1"></li>
+            <li><input type="radio" id="movie_rating_2" name="movie[rating]" value="2"></li>
+            <li><input type="radio" id="movie_rating_3" name="movie[rating]" value="3"></li>
+            <li><input type="radio" id="movie_rating_4" name="movie[rating]" value="4"></li>
+            <li><input type="radio" id="movie_rating_5" name="movie[rating]" value="5"></li>
+          </ul>
+        </div>
+      </fieldset>
+      <img src="https://image.tmdb.org/t/p/w150/cWxAQD5UotnAOPxB8rvPZlpYR0d.jpg" id="movie_poster" title="Change poster">
+      <div>
+        <label for="movie_location">Location</label>
+        <input type="text" id="movie_location" name="movie[location]">
+      </div>
+      <div class="form_actions">
+        <input type="submit" id="submit" value="Save">
+        <input type="button" id="cancel" value="Cancel">
+      </div>
+    </form>
+  </section>
+  <section class="tab_page">
+    <form action="#" method="post">
+      <div id="movie_comments_wrapper">
+        <textarea id="movie_comments" name="movie[comments]"></textarea>
+      </div>
+    </form>
+  </section>
+  <section class="tab_page"></section>
+  <section class="tab_page"></section>
+</body>
+</html>

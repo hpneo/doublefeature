@@ -1,4 +1,8 @@
 .statusbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
   background: #eeeeee;
   height: 24px;
   line-height: 24px;
@@ -11,14 +15,15 @@
 .statusbar .statusbar_item {
   display: block;
   float: left;
-  height: 24px;
-  line-height: 24px;
+  height: 22px;
+  line-height: 22px;
   vertical-align: middle;
   padding: 0 8px;
+  flex-grow: 0;
 }
 
 .statusbar .statusbar_label {
-  width: calc(100% - 78px);
+  flex-grow: 1;
   text-align: center;
 }
 
@@ -59,12 +64,33 @@
   width: 18px;
 }
 
+.statusbar .statusbar_item.dropdown span:after {
+  display: inline-block;
+  content: "";
+  width: 16px;
+  height: 24px;
+  background: url('/assets/images/mono/dropdown_arrow.svg') no-repeat left center;
+  background-size: 14px 14px;
+  margin-left: -4px;
+}
+
 .statusbar #settings span:before {
   background: url('/assets/images/mono/settings.svg') no-repeat left center;
   background-size: 16px 14px;
+  -webkit-transform: rotate(90deg);
 }
 
 .statusbar #toggle_sidebar span:before {
   background: url('/assets/images/mono/menu.svg') no-repeat left center;
+  background-size: 16px 16px;
+}
+
+.statusbar #previous_movie span:before {
+  background: url('/assets/images/mono/chevron_left.svg') no-repeat left center;
+  background-size: 16px 16px;
+}
+
+.statusbar #next_movie span:before {
+  background: url('/assets/images/mono/chevron_right.svg') no-repeat left center;
   background-size: 16px 16px;
 }

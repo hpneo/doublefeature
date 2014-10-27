@@ -3,13 +3,12 @@
   height: 100%;
   border-right: solid 1px #ccc;
   background: rgb(233, 232, 233);
-  padding: 5px;
   overflow: auto;
+  padding: 5px 0;
 }
 
 .treeview dl {
   margin: 0;
-  padding: 0;
 }
 
 .treeview dt {
@@ -17,8 +16,37 @@
   font-weight: 900;
 }
 
+.treeview dt, .treeview dd {
+  padding: 0px 5px;
+}
+
 .treeview dd {
   margin: 0;
-  padding: 0;
-  margin-left: 10px;
+  padding-left: 10px;
+}
+
+.treeview dd:hover, .treeview dd.selected {
+  background: #ccc;
+}
+
+.treeview dd.selected {
+  font-weight: bold;
+}
+
+.treeview dl.with_icon dt {
+  padding-left: 23px;
+}
+
+.treeview dl.with_icon dd {
+  padding-left: 25px;
+}
+
+.treeview dl.genres dt {
+  background: url('/assets/images/mono/movie.svg') no-repeat 5px center;
+  background-size: 16px 16px;
+}
+
+.treeview dl.lists dt {
+  background: url('/assets/images/mono/list.svg') no-repeat 5px center;
+  background-size: 16px 16px;
 }

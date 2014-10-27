@@ -29,12 +29,42 @@ input {
   outline: none;
 }
 
+header#backdrop {
+  background: url('https://image.tmdb.org/t/p/original/j8iM6B5HwZ8sojjM6kJbVniMKTh.jpg') no-repeat center center;
+  height: 100px;
+  background-size: 100% auto;
+}
+
 .library_wrapper {
   display: block;
   width: 100%;
   height: calc(100% - 61px);
 }
 
+.add_movie_wrapper {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding-top: 10px;
+}
+
 .library_wrapper > * {
   float: left;
+}
+
+#movie_view .tab_page {
+  height: calc(100% - 124px);
+}
+
+#movie_view #movie_poster {
+  margin-top: 1px;
+}
+
+#add_movie_view #backdrop {
+  margin-bottom: 10px;
+}
+
+#add_movie_view .statusbar {
+  margin-top: 10px;
+  border-bottom: solid 1px #a3a3a3; /*#272727*/
 }

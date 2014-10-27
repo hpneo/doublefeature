@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <title>Double Feature</title>
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/layout.css">
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/toolbar.css">
@@ -37,9 +38,9 @@
   </nav>
   <div class="library_wrapper">
     <aside id="sidebar" class="treeview">
-      <dl>
+      <dl class="genres with_icon">
         <dt>Genres</dt>
-        <dd>All</dd>
+        <dd class="selected">All</dd>
         <dd>Action</dd>
         <dd>Adventure</dd>
         <dd>Animation</dd>
@@ -55,7 +56,7 @@
         <dd>Mystery</dd>
         <dd>Road Movie</dd>
       </dl>
-      <dl>
+      <dl class="lists with_icon">
         <dt>Lists</dt>
         <dd>All</dd>
         <dd>Kubrick</dd>
@@ -135,9 +136,33 @@
       <span></span>
     </div>
     <span class="statusbar_item statusbar_label">15 movies</span>
-    <div class="statusbar_item statusbar_button at_right icon_only" id="settings" title="Settings">
+    <div class="statusbar_item statusbar_button at_right dropdown icon_only" id="settings" title="Settings">
       <span></span>
     </div>
   </nav>
+
+  <script type="text/javascript">
+    document.querySelector('#add').addEventListener('click', function() {
+      var gui = require('nw.gui');
+      var win = gui.Window.open('app://doublefeature/movie.html', {
+        position: 'center',
+        width: 500,
+        // height: 455,
+        height: 460,
+        resizable: false,
+        toolbar: true,
+        'always-on-top': false
+      });
+
+      win.on('document-end', function() {
+        win.focus();
+        // win.setAlwaysOnTop(true);
+      });
+
+      win.on('blur', function() {
+        // win.focus();
+      });
+    });
+  </script>
 </body>
 </html>

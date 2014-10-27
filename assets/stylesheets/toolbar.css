@@ -61,3 +61,15 @@
 .toolbar .toolbar_item.icon_only span:before {
   width: 24px;
 }
+
+.toolbar .toolbar_item.dropdown span:after {
+  display: inline-block;
+  content: "";
+  width: 16px;
+  height: 24px;
+  background: url('/assets/images/mono/dropdown_arrow.svg') no-repeat left center;
+  background-size: 14px 14px;
+  margin-left: -4px;
+  vertical-align: middle;
+  margin-top: -8px;
+}
