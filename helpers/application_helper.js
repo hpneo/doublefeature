@@ -19,3 +19,13 @@ function loadStyle(path) {
 
   document.head.appendChild(newStyleSheet);
 }
+
+function hideSidebar() {
+  document.querySelector('#sidebar').classList.add('hidden');
+  document.querySelector('#library').classList.add('full');
+}
+
+function showSidebar() {
+  document.querySelector('#sidebar').classList.remove('hidden');
+  document.querySelector('#library').classList.remove('full');
+}

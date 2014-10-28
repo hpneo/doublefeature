@@ -132,6 +132,17 @@
   </nav>
 
   <script type="text/javascript">
+    document.querySelector('#toggle_sidebar').addEventListener('click', function() {
+      if (this.classList.contains('active')) {
+        hideSidebar();
+        this.classList.remove('active');
+      }
+      else {
+        showSidebar();
+        this.classList.add('active');
+      }
+    });
+    
     document.querySelector('#add').addEventListener('click', function() {
       var gui = require('nw.gui');
       var win = gui.Window.open('app://doublefeature/add_movie.html', {
