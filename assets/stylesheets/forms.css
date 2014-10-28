@@ -41,7 +41,9 @@ form legend select option {
   width: 100%;
 }
 
-form > div, form > fieldset > div {
+form > div,
+form > fieldset > div,
+form > .tab_page > div {
   display: block;
   width: 100%;
   padding: 1px 10px;
@@ -55,7 +57,9 @@ form > fieldset > div {
   overflow: hidden;
 }
 
-form div > * {
+form > div > *,
+form > fieldset > div > *,
+form div label {
   display: inline-block;
 }
 
@@ -66,6 +70,7 @@ form div label {
 form div input[type="text"],
 form div input[type="number"],
 form div select {
+  display: inline-block;
   width: calc(100% - 105px);
   outline: none;
   font-family: inherit;
@@ -89,6 +94,7 @@ form div textarea {
 
 form select {
   -webkit-appearance: menulist-button;
+  outline: none;
 }
 
 form select[multiple] {

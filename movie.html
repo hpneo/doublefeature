@@ -6,18 +6,19 @@
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/layout.css">
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/statusbar.css">
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/forms.css">
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/tags.css">
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/tabs.css">
 </head>
 <body id="movie_view">
   <header id="backdrop"></header>
-  <nav class="tabs">
-    <a href="#" class="active">Info</a>
-    <a href="#">Comments</a>
-    <a href="#">Tags</a>
-    <a href="#">Lists</a>
-  </nav>
-  <section class="tab_page active">
-    <form action="#" method="post" class="movie_wrapper">
+  <form action="#" method="post" class="movie_wrapper">
+    <nav class="tabs">
+      <a href="#" class="active">Info</a>
+      <a href="#">Comments</a>
+      <a href="#">Tags</a>
+      <a href="#">Lists</a>
+    </nav>
+    <section class="tab_page active">
       <fieldset>
         <div>
           <label for="movie_title">Title</label>
@@ -60,24 +61,36 @@
         </div>
       </fieldset>
       <img src="https://image.tmdb.org/t/p/w150/cWxAQD5UotnAOPxB8rvPZlpYR0d.jpg" id="movie_poster" title="Change poster">
-      <div>
+      <div id="movie_location_wrapper">
         <label for="movie_location">Location</label>
         <input type="text" id="movie_location" name="movie[location]">
       </div>
-      <div class="form_actions">
-        <input type="submit" id="submit" value="Save">
-        <input type="button" id="cancel" value="Cancel">
-      </div>
-    </form>
-  </section>
-  <section class="tab_page">
-    <form action="#" method="post">
+    </section>
+    <section class="tab_page">
       <div id="movie_comments_wrapper">
         <textarea id="movie_comments" name="movie[comments]"></textarea>
       </div>
-    </form>
-  </section>
-  <section class="tab_page"></section>
-  <section class="tab_page"></section>
+    </section>
+    <section class="tab_page">
+      <div id="movie_tags_wrapper" class="tags_wrapper">
+        <ul class="tags">
+          <li class="new_tag"><input type="text" placeholder="Add a tag"></li>
+          <li><span>WWII</span><span class="remove">×</span></li>
+          <li><span>Drama</span><span class="remove">×</span></li>
+          <li><span>Movies with Brad Pitt</span><span class="remove">×</span></li>
+        </ul>
+      </div>
+    </section>
+    <section class="tab_page">
+      <select id="movie_lists" name="movie[lists]" multiple>
+        <option>Space Drama</option>
+        <option>Films in space</option>
+      </select>
+    </section>
+    <div class="form_actions">
+      <input type="submit" id="submit" value="Save">
+      <input type="button" id="cancel" value="Cancel">
+    </div>
+  </form>
 </body>
 </html>

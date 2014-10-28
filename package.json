@@ -4,7 +4,7 @@
   "description": "Double Feature is a simple movie organizer for Windows and Mac, designed for small and medium-sized collections.",
   "repository": {
     "type": "git",
-    "url": "git@github.com:HPNeo/doublefeature.git"
+    "url": "git@github.com:hpneo/doublefeature.git"
   },
   "keywords": [
     "movies",
@@ -13,10 +13,10 @@
   "author": "Gustavo Leon (hpneo)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/HPNeo/doublefeature/issues"
+    "url": "https://github.com/hpneo/doublefeature/issues"
   },
-  "homepage": "https://github.com/HPNeo/doublefeature",
-  "main": "app://doublefeature/index.html",
+  "homepage": "https://github.com/hpneo/doublefeature",
+  "main": "app://doublefeature_development/index.html",
   "single-instance": true,
   "window": {
     "title": "Double Feature",

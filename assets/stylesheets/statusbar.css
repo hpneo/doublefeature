@@ -35,7 +35,7 @@
   background: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
 }
 
-.statusbar .statusbar_button:active {
+.statusbar .statusbar_button:active, .statusbar .statusbar_button.active {
   background: -webkit-linear-gradient(bottom, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
 }
 

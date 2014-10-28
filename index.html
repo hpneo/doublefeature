@@ -25,10 +25,10 @@
 </head>
 <body>
   <nav class="toolbar">
-    <div class="toolbar_item toolbar_item_button dropdown" id="add" title="Add">
+    <div class="toolbar_item toolbar_item_button" id="add" title="Add">
       <span>Add</span>
     </div>
-    <div class="toolbar_item toolbar_item_button dropdown" id="add_list" title="Add list">
+    <div class="toolbar_item toolbar_item_button" id="add_list" title="Add list">
       <span>Add list</span>
     </div>
     <div class="toolbar_item at_right" id="search_form">
@@ -131,12 +131,12 @@
     </section>
   </div>
   <nav class="statusbar">
-    <div class="statusbar_item statusbar_button" title="Add">+</div>
-    <div class="statusbar_item statusbar_button icon_only" id="toggle_sidebar" title="Toggle sidebar">
+    <!--<div class="statusbar_item statusbar_button" title="Add">+</div>-->
+    <div class="statusbar_item statusbar_button icon_only active" id="toggle_sidebar" title="Toggle sidebar">
       <span></span>
     </div>
     <span class="statusbar_item statusbar_label">15 movies</span>
-    <div class="statusbar_item statusbar_button at_right dropdown icon_only" id="settings" title="Settings">
+    <div class="statusbar_item statusbar_button at_right icon_only" id="settings" title="Settings">
       <span></span>
     </div>
   </nav>
@@ -144,11 +144,11 @@
   <script type="text/javascript">
     document.querySelector('#add').addEventListener('click', function() {
       var gui = require('nw.gui');
-      var win = gui.Window.open('app://doublefeature/movie.html', {
+      var win = gui.Window.open('app://doublefeature/add_movie.html', {
         position: 'center',
         width: 500,
-        // height: 455,
-        height: 460,
+        height: 545,
+        //height: 510,
         resizable: false,
         toolbar: true,
         'always-on-top': false
