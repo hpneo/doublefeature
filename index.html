@@ -8,19 +8,9 @@
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/treeview.css">
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/listview.css">
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/statusbar.css">
+  <script type="text/javascript" src="/helpers/application_helper.js"></script>
   <script>
-    var uiToolbar = document.createElement('link');
-    uiToolbar.setAttribute('rel', 'stylesheet');
-    uiToolbar.setAttribute('type', 'text/css');
-
-    if (process.platform === 'darwin') {
-      uiToolbar.setAttribute('href', '/assets/stylesheets/mac/toolbar.css');
-    }
-    else if (process.platform === 'win32') {
-      uiToolbar.setAttribute('href', '/assets/stylesheets/windows/toolbar.css');
-    }
-
-    document.head.appendChild(uiToolbar);
+    loadSpecificStyles(process.platform);
   </script>
 </head>
 <body>

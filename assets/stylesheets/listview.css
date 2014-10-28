@@ -9,6 +9,11 @@
   align-content: flex-start;
   overflow: auto;
   padding: 5px;
+  transition: width 0.65s;
+}
+
+.listview.full {
+  width: 100%;
 }
 
 .listview .listview_item {

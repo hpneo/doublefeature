@@ -5,6 +5,12 @@
   background: rgb(233, 232, 233);
   overflow: auto;
   padding: 5px 0;
+  transition: width 0.65s;
+}
+
+.treeview.hidden {
+  width: 0px;
+  border: none;
 }
 
 .treeview dl {
