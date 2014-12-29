@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/listview.css">
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/statusbar.css">
   <script type="text/javascript" src="/helpers/application_helper.js"></script>
+  <script type="text/javascript" src="/helpers/home_helper.js"></script>
   <script>
     loadSpecificStyles(process.platform);
   </script>
@@ -28,23 +29,8 @@
   </nav>
   <div class="library_wrapper">
     <aside id="sidebar" class="treeview">
-      <dl class="genres with_icon">
+      <dl class="genres with_icon" id="sidebar_genres">
         <dt>Genres</dt>
-        <dd class="selected">All</dd>
-        <dd>Action</dd>
-        <dd>Adventure</dd>
-        <dd>Animation</dd>
-        <dd>Comedy</dd>
-        <dd>Crime</dd>
-        <dd>Documentary</dd>
-        <dd>Drama</dd>
-        <dd>Fantasy</dd>
-        <dd>History</dd>
-        <dd>Horror</dd>
-        <dd>Music</dd>
-        <dd>Musical</dd>
-        <dd>Mystery</dd>
-        <dd>Road Movie</dd>
       </dl>
       <dl class="lists with_icon">
         <dt>Lists</dt>
@@ -130,39 +116,26 @@
       <span></span>
     </div>
   </nav>
-
+  <div style="display: none;">
+    <input type="file" id="open_file" accept=".avi,.divx,.flv,.mkv,.mp4,.mpg,.mpeg,.mov,.rmvb,.wmv">
+  </div>
+  <script type="text/javascript" src="application.js"></script>
   <script type="text/javascript">
-    document.querySelector('#toggle_sidebar').addEventListener('click', function() {
-      if (this.classList.contains('active')) {
-        hideSidebar();
-        this.classList.remove('active');
-      }
-      else {
-        showSidebar();
-        this.classList.add('active');
-      }
-    });
-    
-    document.querySelector('#add').addEventListener('click', function() {
-      var gui = require('nw.gui');
-      var win = gui.Window.open('app://doublefeature/add_movie.html', {
-        position: 'center',
-        width: 500,
-        height: 545,
-        //height: 510,
-        resizable: false,
-        toolbar: true,
-        'always-on-top': false
-      });
+    var Canguro = require('canguro');
 
-      win.on('document-end', function() {
-        win.focus();
-        // win.setAlwaysOnTop(true);
-      });
+    Canguro.init({ name: 'doublefeature' }).then(function() {
+      var Genre = require('./app/models/genre');
 
-      win.on('blur', function() {
-        // win.focus();
-      });
+      Genre.count().then(function(count) {
+        if (count === 0) {
+          return Genre.loadFromTMDB();
+        }
+        else {
+          return Genre.all();
+        }
+      }).then(populateGenresList);
+
+      Application.initialize();
     });
   </script>
 </body>

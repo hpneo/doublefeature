@@ -30,7 +30,7 @@ input {
 }
 
 header#backdrop {
-  background: url('https://image.tmdb.org/t/p/original/j8iM6B5HwZ8sojjM6kJbVniMKTh.jpg') no-repeat center center;
+  /*background: url('https://image.tmdb.org/t/p/original/j8iM6B5HwZ8sojjM6kJbVniMKTh.jpg') no-repeat center center;*/
   height: 150px;
   background-size: 100% auto;
 }

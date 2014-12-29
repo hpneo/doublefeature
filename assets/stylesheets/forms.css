@@ -151,7 +151,8 @@ form .form_actions button {
   margin-right: 1px;
 }
 
-form div label#movie_genres_label {
+form div label#movie_genres_label,
+form div.with_multiselect label {
   vertical-align: top;
 }
 

@@ -6,16 +6,20 @@
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/layout.css">
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/statusbar.css">
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/forms.css">
+  <script type="text/javascript" src="/helpers/application_helper.js"></script>
+  <script type="text/javascript" src="/helpers/add_movie_helper.js"></script>
 </head>
 <body id="add_movie_view">
   <header id="backdrop"></header>
   <form action="#" method="post" class="add_movie_wrapper">
     <fieldset>
       <legend>
+        <!--
         <label for="movie_suggestions">From:</label>
         <select id="movie_suggestions">
           <option>Moon</option>
         </select>
+        -->
       </legend>
       <div>
         <label for="movie_title">Title</label>
@@ -36,14 +40,6 @@
       <div>
         <label for="movie_genres" id="movie_genres_label">Genres</label>
         <select id="movie_genres" name="movie[genres]" multiple size="6">
-          <option>Action</option>
-          <option>Adventure</option>
-          <option>Animation</option>
-          <option>Blaxploitation</option>
-          <option>Comedy</option>
-          <option>Crime</option>
-          <option>Documentary</option>
-          <option>Drama</option>
         </select>
       </div>
       <div>
@@ -57,30 +53,28 @@
         </ul>
       </div>
     </fieldset>
-    <img src="https://image.tmdb.org/t/p/w150/cWxAQD5UotnAOPxB8rvPZlpYR0d.jpg" id="movie_poster" title="Change poster">
+    <img src="" id="movie_poster" title="Change poster">
     <div>
-      <label for="movie_location">Location</label>
-      <input type="text" id="movie_location" name="movie[location]">
+      <label for="movie_file_path">Location</label>
+      <input type="text" id="movie_file_path" name="movie[file_path]">
     </div>
     <nav class="statusbar">
-      <div class="statusbar_item statusbar_button icon_only" id="previous_movie" title="Previous movie">
+      <div style="display: none;" class="statusbar_item statusbar_button icon_only" id="previous_movie" title="Previous movie">
         <span></span>
       </div>
-      <div class="statusbar_item statusbar_button icon_only" id="next_movie" title="Next movie">
+      <div style="display: none;" class="statusbar_item statusbar_button icon_only" id="next_movie" title="Next movie">
         <span></span>
       </div>
-      <span class="statusbar_item statusbar_label">15 movies to add</span>
+      <span class="statusbar_item statusbar_label">1 movie to add</span>
     </nav>
     <div class="form_actions">
       <input type="submit" id="submit" value="Add">
       <input type="button" id="cancel" value="Cancel">
     </div>
   </form>
+  <script type="text/javascript" src="application.js"></script>
   <script type="text/javascript">
-    var gui = require('nw.gui');
-    var win = gui.Window.get();
-
-    win.focus();
+    Application.initializeAddMovie();
   </script>
 </body>
 </html>

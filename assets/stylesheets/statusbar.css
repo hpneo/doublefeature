@@ -3,6 +3,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-start;
+  clear: both;
   background: #eeeeee;
   height: 24px;
   line-height: 24px;

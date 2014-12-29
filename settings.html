@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Settings</title>
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/layout.css">
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/statusbar.css">
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/forms.css">
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/tags.css">
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/tabs.css">
+</head>
+<body id="settings_view">
+</body>
+  <form action="#" method="post" class="settings_wrapper tab_view">
+    <nav class="tabs">
+      <a href="#" class="active">General</a>
+      <a href="#">Renaming</a>
+      <a href="#">Advanced</a>
+      <a href="#">About</a>
+    </nav>
+    <section class="tab_page active">
+      <div class="with_multiselect">
+        <label for="setting_genres">Genres</label>
+        <select id="setting_genres" name="setting[genres]" multiple size="6">
+          <option>Action</option>
+          <option>Adventure</option>
+          <option>Animation</option>
+          <option>Blaxploitation</option>
+          <option>Comedy</option>
+          <option>Crime</option>
+          <option>Documentary</option>
+          <option>Drama</option>
+        </select>
+      </div>
+    </section>
+    <section class="tab_page">
+      <div class="with_multiselect">
+        <label for="setting_renaming_patterns">Renaming with</label>
+        <select id="setting_renaming_patterns" name="setting[renaming_patterns]" multiple size="6">
+          <option>Action</option>
+          <option>Adventure</option>
+          <option>Animation</option>
+          <option>Blaxploitation</option>
+          <option>Comedy</option>
+          <option>Crime</option>
+          <option>Documentary</option>
+          <option>Drama</option>
+        </select>
+      </div>
+    </section>
+    <section class="tab_page">
+      <div>
+        <label for="setting_player_path">Player path</label>
+        <input type="text" id="setting_player_path" name="setting[player_path]">
+      </div>
+    </section>
+    <section class="tab_page"></section>
+    <div class="form_actions">
+      <input type="submit" id="submit" value="Save">
+      <input type="button" id="cancel" value="Cancel">
+    </div>
+  </form>
+  <script type="text/javascript">
+    global.window = window;
+
+    var TabView = require('./app/views/ui/tab_view.js');
+    var tabView = new TabView({
+      el: '.tab_view'
+    });
+  </script>
+</html>

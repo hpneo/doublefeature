@@ -11,7 +11,7 @@
 </head>
 <body id="movie_view">
   <header id="backdrop"></header>
-  <form action="#" method="post" class="movie_wrapper">
+  <form action="#" method="post" class="movie_wrapper tab_view">
     <nav class="tabs">
       <a href="#" class="active">Info</a>
       <a href="#">Comments</a>
@@ -92,5 +92,13 @@
       <input type="button" id="cancel" value="Cancel">
     </div>
   </form>
+  <script type="text/javascript">
+    global.window = window;
+
+    var TabView = require('./app/views/ui/tab_view.js');
+    var tabView = new TabView({
+      el: '.tab_view'
+    });
+  </script>
 </body>
 </html>

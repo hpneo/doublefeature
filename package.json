@@ -4,7 +4,7 @@
   "description": "Double Feature is a simple movie organizer for Windows and Mac, designed for small and medium-sized collections.",
   "repository": {
     "type": "git",
-    "url": "git@github.com:hpneo/doublefeature.git"
+    "url": "https://github.com/hpneo/doublefeature.git"
   },
   "keywords": [
     "movies",
@@ -28,5 +28,12 @@
     "toolbar": true,
     "position": "center",
     "show": true
+  },
+  "dependencies": {
+    "underscore": "1.6.0",
+    "backbone": "1.1.2",
+    "jquery": "2.1.1",
+    "moviedb": "0.1.9",
+    "canguro": "git+ssh://git@github.com:hpneo/canguro.git"
   }
 }

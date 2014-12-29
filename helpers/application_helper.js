@@ -20,12 +20,48 @@ function loadStyle(path) {
   document.head.appendChild(newStyleSheet);
 }
 
-function hideSidebar() {
-  document.querySelector('#sidebar').classList.add('hidden');
-  document.querySelector('#library').classList.add('full');
+function showModal(path, options) {
+  options.position = 'center';
+  options.resizable = false;
+  options.toolbar = true;
+
+  var gui = require('nw.gui');
+  var newModal = gui.Window.open('app://doublefeature_development/' + path + '.html', options);
+
+  newModal.on('document-start', function() {
+    newModal.window.options = options.options;
+  });
+
+  newModal.on('document-end', function() {
+    newModal.focus();
+    newModal.setAlwaysOnTop(true);
+  });
+
+  newModal.on('blur', function() {
+    // newModal.focus();
+  });
+
+  newModal.on('closed', function() {
+    global.window = gui.Window.get().window;
+    global.window.document.body.classList.remove('disabled');
+
+    var openFileInput = document.querySelector('#open_file');
+    openFileInput.value = '';
+  });
+
+  return newModal;
 }
 
-function showSidebar() {
-  document.querySelector('#sidebar').classList.remove('hidden');
-  document.querySelector('#library').classList.remove('full');
+function populateForm(fields) {
+  Object.keys(fields).forEach(function(field) {
+    var value = fields[field],
+        input = document.getElementById(field);
+
+    if (input.tagName === 'IMG') {
+      input.src = value;
+    }
+    else {
+      input.value = value;
+    }
+  });
 }
