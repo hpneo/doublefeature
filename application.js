@@ -8,6 +8,33 @@ var Application = (function() {
         return false;
       }
     }, true);
+
+    loadGenres();
+    loadMovies();
+  }
+
+  function loadGenres() {
+    var Genre = require('./app/models/genre');
+
+    Genre.count().then(function(count) {
+      if (count === 0) {
+        return Genre.loadFromTMDB();
+      }
+      else {
+        return Genre.all();
+      }
+    }).then(populateGenresList);
+  }
+
+  function loadMovies() {
+    var Movie = require('./app/models/movie'),
+        MovieDB = require('moviedb')('fdf3c94669f3cc0906fddc99e5cd8208');
+
+    MovieDB.configuration(function(error, response) {
+      Movie.configuration = response;
+
+      Movie.all().then(populateMoviesList).catch(console.log.bind(console));
+    });
   }
 
   function initializeAddMovie() {
@@ -20,7 +47,8 @@ var Application = (function() {
 
     var Movie = require('./app/models/movie'),
         Genre = require('./app/models/genre'),
-        ModelForm = require('./app/views/ui/model_form');;
+        MovieGenre = require('./app/models/movie_genre'),
+        ModelForm = require('./app/views/ui/model_form');
 
     var genres = document.querySelector('#movie_genres');
 
@@ -31,7 +59,25 @@ var Application = (function() {
           modelForm = new ModelForm({
             el: '.add_movie_wrapper',
             modelName: 'movie',
-            model: movie
+            model: movie,
+            afterSave: function(view, model) {
+              var ids = view.find('#movie_genres').val();
+
+              Genre.where({ id: ids }).load().then(function(records) {
+                var promises = records.map(function(genre) {
+                  var movieGenre = new MovieGenre({
+                    movie_id: model.id,
+                    genre_id: genre.id
+                  });
+
+                  return movieGenre.save();
+                });
+
+                return Promise.all(promises);
+              }).then(function() {
+                win.close();
+              });
+            }
           });
 
       selectGenres(data.genres, genres, 'data-tmdb_id');
@@ -39,6 +85,8 @@ var Application = (function() {
       setPoster('#movie_poster', movie.posters['w500']);
 
       modelForm.render();
+
+      console.log(movie);
     }).catch(console.log.bind(console));
   }
 
@@ -48,6 +96,7 @@ var Application = (function() {
       initializeMainToolbarEvents();
       initializeMainSidebarEvents();
     },
-    initializeAddMovie: initializeAddMovie
+    initializeAddMovie: initializeAddMovie,
+    loadMovies: loadMovies
   }
 })();

@@ -32,7 +32,7 @@
       <dl class="genres with_icon" id="sidebar_genres">
         <dt>Genres</dt>
       </dl>
-      <dl class="lists with_icon">
+      <!--<dl class="lists with_icon">
         <dt>Lists</dt>
         <dd>All</dd>
         <dd>Kubrick</dd>
@@ -41,69 +41,9 @@
         <dd>Space movies</dd>
         <dd>Tarantino</dd>
         <dd>WWII</dd>
-      </dl>
+      </dl>-->
     </aside>
     <section id="library" class="listview">
-      <div class="listview_item">
-        <img src="https://image.tmdb.org/t/p/w130/kb3X943WMIJYVg4SOAyK0pmWL5D.jpg" class="poster">
-        <span>12 Years a Slave</span>
-      </div>
-      <div class="listview_item">
-        <img src="https://image.tmdb.org/t/p/w130/oai3xLBQHpIh18VJdRCcL7D0Yg0.jpg" class="poster">
-        <span>Argo</span>
-      </div>
-      <div class="listview_item">
-        <img src="https://image.tmdb.org/t/p/w130/3nnKjnTu347oHrZttoBtK5G2KSJ.jpg" class="poster">
-        <span>The Descendants</span>
-      </div>
-      <div class="listview_item">
-        <img src="https://image.tmdb.org/t/p/w130/hKTwHT6WtYhtG8U2PJQSQH2y4oD.jpg" class="poster">
-        <span>The Social Network</span>
-      </div>
-      <div class="listview_item">
-        <img src="https://image.tmdb.org/t/p/w130/tcqb9NHdw9SWs2a88KCDD4V8sVR.jpg" class="poster">
-        <span>Avatar</span>
-      </div>
-      <div class="listview_item">
-        <img src="https://image.tmdb.org/t/p/w130/ojgf8iJpS4VX6jJfWGLpuEx0wm.jpg" class="poster">
-        <span>Slumdong Millonaire</span>
-      </div>
-      <div class="listview_item">
-        <img src="https://image.tmdb.org/t/p/w130/quaWuwYZd8IbZMCOhW3CZEvyCWJ.jpg" class="poster">
-        <span>Atonement</span>
-      </div>
-      <div class="listview_item">
-        <img src="https://image.tmdb.org/t/p/w130/fxneN0EQZwTfAfhTGUvUuIn6PLi.jpg" class="poster">
-        <span>Babel</span>
-      </div>
-      <div class="listview_item">
-        <img src="https://image.tmdb.org/t/p/w130/hmBG09xDFK1n1czJ74BvfnSlxDI.jpg" class="poster">
-        <span>Brokeback Mountain</span>
-      </div>
-      <div class="listview_item">
-        <img src="https://image.tmdb.org/t/p/w130/1cT3LP4pzZEQ0DLrEL8jdpA8NKd.jpg" class="poster">
-        <span>The Aviator</span>
-      </div>
-      <div class="listview_item">
-        <img src="https://image.tmdb.org/t/p/w130/50LoR9gJhbWZ5PpoHgi8MNTYgzd.jpg" class="poster">
-        <span>Lord of the Rings</span>
-      </div>
-      <div class="listview_item">
-        <img src="https://image.tmdb.org/t/p/w130/vRTqBRCLGiZNITXfdhGZd3tZ7Qh.jpg" class="poster">
-        <span>The Hours</span>
-      </div>
-      <div class="listview_item">
-        <img src="https://image.tmdb.org/t/p/w130/4SFqHDZ1NvWdysucWbgnYlobdxC.jpg" class="poster">
-        <span>A Beautiful Mind</span>
-      </div>
-      <div class="listview_item">
-        <img src="https://image.tmdb.org/t/p/w130/6WBIzCgmDCYrqh64yDREGeDk9d3.jpg" class="poster">
-        <span>Gladiator</span>
-      </div>
-      <div class="listview_item">
-        <img src="https://image.tmdb.org/t/p/w130/3UBQGKS8c1dxRnDiu5kUK6ej3pP.jpg" class="poster">
-        <span>American Beauty</span>
-      </div>
     </section>
   </div>
   <nav class="statusbar">
@@ -111,7 +51,7 @@
     <div class="statusbar_item statusbar_button icon_only active" id="toggle_sidebar" title="Toggle sidebar">
       <span></span>
     </div>
-    <span class="statusbar_item statusbar_label">15 movies</span>
+    <span class="statusbar_item statusbar_label" id="movies_count">15 movies</span>
     <div class="statusbar_item statusbar_button at_right icon_only" id="settings" title="Settings">
       <span></span>
     </div>
@@ -124,17 +64,6 @@
     var Canguro = require('canguro');
 
     Canguro.init({ name: 'doublefeature' }).then(function() {
-      var Genre = require('./app/models/genre');
-
-      Genre.count().then(function(count) {
-        if (count === 0) {
-          return Genre.loadFromTMDB();
-        }
-        else {
-          return Genre.all();
-        }
-      }).then(populateGenresList);
-
       Application.initialize();
     });
   </script>

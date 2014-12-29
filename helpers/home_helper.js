@@ -19,6 +19,21 @@ function populateGenresList(genres) {
   document.querySelector('#sidebar_genres').innerHTML = genresList;
 }
 
+function populateMoviesList(movies) {
+  var moviesList = '';
+
+  movies.forEach(function(movie) {
+    moviesList += '<div class="listview_item">';
+    moviesList += '<img src="' + movie.posters['w185'] + '" class="poster">';
+    moviesList += '<span>' + movie.title + '</span>';
+    moviesList += '</div>';
+  });
+
+  document.querySelector('#movies_count').textContent = movies.length + ' movie(s)';
+
+  document.querySelector('#library').innerHTML = moviesList;
+}
+
 function initializeMainToolbarEvents() {
   var openFileInput = document.querySelector('#open_file');
   
@@ -31,7 +46,8 @@ function initializeMainToolbarEvents() {
         height: 545,
         options: {
           files: e.target.files
-        }
+        },
+        onClose: Application.loadMovies
       });
     }
   });

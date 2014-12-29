@@ -7,7 +7,11 @@ var ModelForm = Backbone.View.extend({
     'change': 'handleInputChange'
   },
   initialize: function(options) {
+    this.setElement($(options.el, window.document)[0]);
+    
     this.modelName = options.modelName;
+    this.associations = options.associations;
+    this.afterSave = options.afterSave;
   },
   handleInputChange: function() {
     var self = this;
@@ -23,11 +27,15 @@ var ModelForm = Backbone.View.extend({
   handleSubmit: function(e) {
     e.preventDefault();
 
-    console.log(this.model, this.model.save);
+    var self = this;
 
-    // this.model.save().then(function() {
-    //   alert('Movie added!');
-    // });
+    this.model.save().then(function() {
+      console.log(self.afterSave);
+
+      if (self.afterSave) {
+        self.afterSave(self.$el, self.model);
+      }
+    }).catch(console.log.bind(console));
   },
   render: function() {
     var self = this;

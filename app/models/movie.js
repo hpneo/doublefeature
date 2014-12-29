@@ -2,7 +2,9 @@ var Canguro = require('canguro'),
     MovieDB = require('moviedb')('fdf3c94669f3cc0906fddc99e5cd8208'),
     TMDBMixin = require('../../mixins/tmdb_mixin');
 
-var Movie = Canguro.defineModel('Movie');
+var Movie = Canguro.defineModel('Movie', function() {
+  this.hasMany('movie_genres', { model: require('./movie_genre') });
+});
 
 MovieDB.configuration(function(error, response) {
   Movie.configuration = response;

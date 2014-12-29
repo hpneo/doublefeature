@@ -1,7 +1,9 @@
 var Canguro = require('canguro'),
     MovieDB = require('moviedb')('fdf3c94669f3cc0906fddc99e5cd8208');
 
-var Genre = Canguro.defineModel('Genre');
+var Genre = Canguro.defineModel('Genre', function() {
+  this.hasMany('movie_genres', { model: require('./movie_genre') });
+});
 
 Genre.loadFromTMDB = function() {
   var promise = new window.Promise(function(resolve, reject) {
