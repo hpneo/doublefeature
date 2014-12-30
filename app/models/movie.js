@@ -4,6 +4,7 @@ var Canguro = require('canguro'),
 
 var Movie = Canguro.defineModel('Movie', function() {
   this.hasMany('movie_genres', { model: require('./movie_genre') });
+  this.hasMany('movie_lists', { model: require('./movie_list') });
 });
 
 Movie.configuration = JSON.parse(global.window.localStorage.getItem('tmdb_configuration'));
@@ -87,6 +88,38 @@ Movie.loadFromFile = function(file) {
 Movie.prototype.get = function(prop) {
   return this[prop];
 };
+
+Movie.defineProperty('genres', function() {
+  var Genre = require('./genre');
+  
+  var promise = this.movie_genres.load().then(function(records) {
+    var genreIds = records.map(function(movieGenre) {
+      return movieGenre.genre_id;
+    });
+
+    return Genre.where({ id: genreIds }).load();
+  });
+
+  return {
+    load: function() { return promise; }
+  };
+});
+
+Movie.defineProperty('lists', function() {
+  var List = require('./list');
+  
+  var promise = this.movie_lists.load().then(function(records) {
+    var listIds = records.map(function(movieList) {
+      return movieList.list_id;
+    });
+
+    return List.where({ id: listIds }).load();
+  });
+
+  return {
+    load: function() { return promise; }
+  };
+});
 
 Movie.defineProperty('backdrops', function() {
   if (!this._backdrops) {

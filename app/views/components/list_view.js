@@ -47,6 +47,7 @@ var ListView = Backbone.View.extend({
     }
 
     this.reactElement.setProps({ items: collection });
+    this.trigger('collection_changed');
   },
   render: function() {
     this.renderOptions.items = this.collection;
@@ -58,6 +59,7 @@ var ListView = Backbone.View.extend({
         element = React.render(listViewComponent, this.el);
 
     this.reactElement = element;
+    this.trigger('collection_changed');
 
     return this;
   }

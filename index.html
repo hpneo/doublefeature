@@ -19,9 +19,9 @@
     <div class="toolbar_item toolbar_item_button" id="add" title="Add">
       <span>Add</span>
     </div>
-    <div class="toolbar_item toolbar_item_button" id="add_list" title="Add list">
+    <!--<div class="toolbar_item toolbar_item_button" id="add_list" title="Add list">
       <span>Add list</span>
-    </div>
+    </div>-->
     <div class="toolbar_item at_right" id="search_form">
       <label for="search">Search:</label>
       <input type="text" id="search" placeholder="Search for a movie">
@@ -29,19 +29,8 @@
   </nav>
   <div class="library_wrapper">
     <aside id="sidebar" class="treeview">
-      <dl class="genres with_icon" id="sidebar_genres">
-        <dt>Genres</dt>
-      </dl>
-      <!--<dl class="lists with_icon">
-        <dt>Lists</dt>
-        <dd>All</dd>
-        <dd>Kubrick</dd>
-        <dd>Marvel Studios</dd>
-        <dd>Noir</dd>
-        <dd>Space movies</dd>
-        <dd>Tarantino</dd>
-        <dd>WWII</dd>
-      </dl>-->
+      <section id="sidebar_genres_container"></section>
+      <section id="sidebar_lists_container"></section>
     </aside>
     <aside id="library_container"></aside>
     <!--<section id="library" class="listview">

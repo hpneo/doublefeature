@@ -13,6 +13,7 @@ var Application = (function() {
 
     if (localStorage.getItem('tmdb_configuration')) {
       loadGenres();
+      // loadLists();
       loadMovies();
     }
     else {
@@ -20,6 +21,7 @@ var Application = (function() {
         localStorage.setItem('tmdb_configuration', JSON.stringify(response));
 
         loadGenres();
+        // loadLists();
         loadMovies();
       });
     }
@@ -38,8 +40,15 @@ var Application = (function() {
     }).then(populateGenresList).catch(console.log.bind(console));
   }
 
+  function loadLists() {
+    var List = require('./app/models/list');
+
+    List.all().then(populateListsList).catch(console.log.bind(console));
+  }
+
   function loadMovies() {
     var Movie = require('./app/models/movie');
+    
     Movie.all().then(populateMoviesList).catch(console.log.bind(console));
   }
 
