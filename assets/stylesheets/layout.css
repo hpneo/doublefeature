@@ -19,6 +19,10 @@ body {
   font: 12px/20px "Lucida Grande", "Helvetica Neue", sans-serif;
 }
 
+.loading {
+  cursor: wait;
+}
+
 a {
   text-decoration: none;
   cursor: default;
@@ -46,6 +50,18 @@ header#backdrop {
   width: 100%;
   height: 100%;
   padding-top: 10px;
+}
+
+#library_container {
+  margin: 0;
+  padding: 0;
+  width: calc(100% - 200px);
+  height: 100%;
+  transition: width 0.65s;
+}
+
+#library_container.full {
+  width: 100%;
 }
 
 .library_wrapper > * {

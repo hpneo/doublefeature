@@ -9,8 +9,20 @@ var Application = (function() {
       }
     }, true);
 
-    loadGenres();
-    loadMovies();
+    var MovieDB = require('moviedb')('fdf3c94669f3cc0906fddc99e5cd8208');
+
+    if (localStorage.getItem('tmdb_configuration')) {
+      loadGenres();
+      loadMovies();
+    }
+    else {
+      MovieDB.configuration(function(error, response) {
+        localStorage.setItem('tmdb_configuration', JSON.stringify(response));
+
+        loadGenres();
+        loadMovies();
+      });
+    }
   }
 
   function loadGenres() {
@@ -23,18 +35,12 @@ var Application = (function() {
       else {
         return Genre.all();
       }
-    }).then(populateGenresList);
+    }).then(populateGenresList).catch(console.log.bind(console));
   }
 
   function loadMovies() {
-    var Movie = require('./app/models/movie'),
-        MovieDB = require('moviedb')('fdf3c94669f3cc0906fddc99e5cd8208');
-
-    MovieDB.configuration(function(error, response) {
-      Movie.configuration = response;
-
-      Movie.all().then(populateMoviesList).catch(console.log.bind(console));
-    });
+    var Movie = require('./app/models/movie');
+    Movie.all().then(populateMoviesList).catch(console.log.bind(console));
   }
 
   function initializeAddMovie() {
@@ -48,11 +54,13 @@ var Application = (function() {
     var Movie = require('./app/models/movie'),
         Genre = require('./app/models/genre'),
         MovieGenre = require('./app/models/movie_genre'),
-        ModelForm = require('./app/views/ui/model_form');
+        ModelForm = require('./app/views/components/model_form');
 
     var genres = document.querySelector('#movie_genres');
 
     Genre.all().then(populateGenresList);
+
+    document.body.classList.add('loading');
 
     Movie.loadFromFile(window.options.files[0]).then(function(data) {
       var movie = new Movie(data),
@@ -85,6 +93,8 @@ var Application = (function() {
       setPoster('#movie_poster', movie.posters['w500']);
 
       modelForm.render();
+
+      document.body.classList.remove('loading');
 
       console.log(movie);
     }).catch(console.log.bind(console));

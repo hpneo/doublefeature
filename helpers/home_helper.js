@@ -1,37 +1,54 @@
+global.document = window.document;
+global.navigator = window.navigator;
+
 function hideSidebar() {
   document.querySelector('#sidebar').classList.add('hidden');
-  document.querySelector('#library').classList.add('full');
+  document.querySelector('#library_container').classList.add('full');
 }
 
 function showSidebar() {
   document.querySelector('#sidebar').classList.remove('hidden');
-  document.querySelector('#library').classList.remove('full');
+  document.querySelector('#library_container').classList.remove('full');
 }
 
 function populateGenresList(genres) {
-  var genresList = '<dt>Genres</dt>';
-  genresList += '<dd class="selected">All</dd>';
-
-  genres.forEach(function(genre) {
-    genresList += '<dd id="#genre_' + genre.id + '" data-id="' + genre.id + '">' + genre.name + '</dd>';
+  var TreeView = require('./app/views/components/tree_view.js');
+  var treeView = new TreeView({
+    el: '#sidebar',
+    collection: genres,
+    renderOptions: {
+      title: 'Genres',
+      allText: 'All',
+      className: 'genres with_icon',
+      id: 'sidebar_genres'
+    }
   });
 
-  document.querySelector('#sidebar_genres').innerHTML = genresList;
+  treeView.render();
 }
 
 function populateMoviesList(movies) {
-  var moviesList = '';
-
-  movies.forEach(function(movie) {
-    moviesList += '<div class="listview_item">';
-    moviesList += '<img src="' + movie.posters['w185'] + '" class="poster">';
-    moviesList += '<span>' + movie.title + '</span>';
-    moviesList += '</div>';
+  var ListView = require('./app/views/components/list_view.js');
+  var listView = new ListView({
+    el: '#library_container',
+    collection: movies,
+    renderOptions: {
+      className: 'listview',
+      id: 'library',
+      fields: {
+        id: 'id',
+        image: function() {
+          return this.posters['w185'];
+        },
+        text: 'title'
+      }
+    }
   });
 
+  listView.render();
   document.querySelector('#movies_count').textContent = movies.length + ' movie(s)';
 
-  document.querySelector('#library').innerHTML = moviesList;
+  console.log(listView);
 }
 
 function initializeMainToolbarEvents() {
@@ -47,7 +64,7 @@ function initializeMainToolbarEvents() {
         options: {
           files: e.target.files
         },
-        onClose: Application.loadMovies
+        afterClose: Application.loadMovies
       });
     }
   });

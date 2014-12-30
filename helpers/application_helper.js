@@ -48,8 +48,8 @@ function showModal(path, options) {
     var openFileInput = document.querySelector('#open_file');
     openFileInput.value = '';
 
-    if (options.onClose) {
-      options.onClose();
+    if (options.afterClose) {
+      options.afterClose();
     }
   });
 

@@ -6,9 +6,7 @@ var Movie = Canguro.defineModel('Movie', function() {
   this.hasMany('movie_genres', { model: require('./movie_genre') });
 });
 
-MovieDB.configuration(function(error, response) {
-  Movie.configuration = response;
-});
+Movie.configuration = JSON.parse(global.window.localStorage.getItem('tmdb_configuration'));
 
 function clearFileName(fileName) {
   var fileNameParts = fileName.split('.');
@@ -66,6 +64,7 @@ Movie.loadFromFile = function(file) {
       fileType = file.type;
 
   var getFirstResult = function(data) {
+        console.log(data);
         return data.results[0];
       },
       getFullInfo = function(data) {
