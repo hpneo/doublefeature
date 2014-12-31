@@ -39,6 +39,12 @@ var ListView = Backbone.View.extend({
 
     this.setElement($(options.el, window.document)[0]);
   },
+  getCollection: function() {
+    return this.originalCollection.slice(0);
+  },
+  restoreCollection: function() {
+    this.setCollection(this.originalCollection);
+  },
   setCollection: function(collection) {
     this.collection = collection;
 
@@ -51,6 +57,7 @@ var ListView = Backbone.View.extend({
   },
   render: function() {
     this.renderOptions.items = this.collection;
+    this.originalCollection = this.collection.slice(0);
 
     var temporaryContainer = window.document.createDocumentFragment();
     temporaryContainer.appendChild(window.document.createElement('div'));

@@ -14,6 +14,7 @@ function showSidebar() {
 
 function populateGenresList(genres) {
   var TreeView = require('./app/views/components/tree_view.js');
+  
   var treeView = new TreeView({
     el: '#sidebar_genres_container',
     collection: genres,
@@ -30,6 +31,7 @@ function populateGenresList(genres) {
 
 function populateListsList(lists) {
   var TreeView = require('./app/views/components/tree_view.js');
+  
   var treeView = new TreeView({
     el: '#sidebar_lists_container',
     collection: lists,
@@ -46,6 +48,7 @@ function populateListsList(lists) {
 
 function populateMoviesList(movies) {
   var ListView = require('./app/views/components/list_view.js');
+  
   var listView = new ListView({
     el: '#library_container',
     collection: movies,
@@ -71,6 +74,26 @@ function populateMoviesList(movies) {
   global.UI.moviesList = listView;
 }
 
+function loadMoviesByGenre(genreId) {
+  var MovieGenre = require('./app/models/movie_genre'),
+      Movie = require('./app/models/movie'),
+      setCollection = global.UI.moviesList.setCollection.bind(global.UI.moviesList),
+      promise;
+
+  if (genreId) {
+    promise = MovieGenre.where({ genre_id: genreId }).load().then(function(records) {
+      var movieIds = records.map(function(record) { return record.movie_id });
+
+      return Movie.where({ id: movieIds }).load();
+    })
+  }
+  else {
+    promise = Movie.all();
+  }
+
+  promise.then(setCollection).catch(console.log.bind(console));
+}
+
 function initializeMainToolbarEvents() {
   var openFileInput = document.querySelector('#open_file');
   
@@ -92,26 +115,14 @@ function initializeMainToolbarEvents() {
   document.querySelector('#add').addEventListener('click', function(e) {
     openFileInput.click();
   });
-}
 
-function loadMoviesByGenre(genreId) {
-  var MovieGenre = require('./app/models/movie_genre'),
-      Movie = require('./app/models/movie'),
-      setCollection = global.UI.moviesList.setCollection.bind(global.UI.moviesList),
-      promise;
+  document.querySelector('#search').addEventListener('keyup', function(e) {
+    var filteredCollection = global.UI.moviesList.getCollection().filter(function(record) {
+      return record.title.match(new RegExp(e.target.value, 'i'));
+    });
 
-  if (genreId) {
-    promise = MovieGenre.where({ genre_id: genreId }).load().then(function(records) {
-      var movieIds = records.map(function(record) { return record.movie_id });
-
-      return Movie.where({ id: movieIds }).load();
-    })
-  }
-  else {
-    promise = Movie.all();
-  }
-
-  promise.then(setCollection).catch(console.log.bind(console));
+    global.UI.moviesList.setCollection(filteredCollection);
+  });
 }
 
 function initializeMainSidebarEvents() {
