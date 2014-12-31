@@ -1,6 +1,6 @@
 # Building Double Feature
 
-Double Feature is built using [node-webkit](https://github.com/rogerwang/node-webkit), [Grunt](http://gruntjs.com/) and [grunt-node-webkit-builder](https://github.com/mllrsohn/grunt-node-webkit-builder).
+Double Feature is built using [node-webkit](https://github.com/rogerwang/node-webkit), [Grunt](http://gruntjs.com/) (which requires [Node.js](http://nodejs.org/)) and [grunt-node-webkit-builder](https://github.com/mllrsohn/grunt-node-webkit-builder).
 
 If you want to build Double Feature for your platform, you need to create a folder for the builder, called `doublefeature_builder`, and place the [source](https://github.com/hpneo/doublefeature) inside of it (you can clone the repository, and must be named `doublefeature`).
 
@@ -58,6 +58,8 @@ module.exports = function(grunt) {
 ```
 
 `grunt-node-webkit-builder` has one task, called `nodewebkit`, which downloads the node-webkit binaries and saves them in a new folder called `cache`. This task is used in the `dist` task, which creates the executables, according the platforms described in the `platforms` option. This Gruntfile also has a `start` task, which runs Double Feature, using the previously downloaded binaries.
+
+If you want to build for Windows you need Windows, or [Wine](https://www.winehq.org/).
 
 `package.json`:
 
