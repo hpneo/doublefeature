@@ -59,30 +59,51 @@ function clearFileName(fileName) {
   return fileName.trim();
 }
 
-Movie.loadFromFile = function(file) {
-  var fileName = clearFileName(file.name),
-      fileSize = file.size,
-      fileType = file.type;
+function getFirstResult(data) {
+  return data.results[0];
+}
 
-  var getFirstResult = function(data) {
-        console.log(data);
-        return data.results[0];
-      },
-      getFullInfo = function(data) {
-        return TMDBMixin.find(data.id);
-      },
-      appendFilePath = function(data) {
+function getFullInfo(data) {
+  return TMDBMixin.find(data.id);
+}
+
+function appendExtraInfo(data) {
+  data.tmdb_id = data.id;
+  data.id = undefined;
+  data.year = (data.release_date || '').split('-').shift();
+  data.director = data.credits.crew.find(function(crewMember) { return crewMember.job === 'Director' });
+  data.director = (data.director || {}).name;
+
+  return data;
+}
+
+Movie.loadFromFile = function(file) {
+  var fileName = clearFileName(file.name);
+
+  var appendFilePath = function(data) {
         data.file_path = file.path;
-        data.tmdb_id = data.id;
-        data.id = undefined;
-        data.year = (data.release_date || '').split('-').shift();
-        data.director = data.credits.crew.find(function(crewMember) { return crewMember.job === 'Director' });
-        data.director = (data.director || {}).name;
+
+        return data;
+      },
+      notFound = function() {
+        return {
+          file_path: file.path
+        };
+      };
+
+  return TMDBMixin.search(fileName).then(getFirstResult).then(getFullInfo).then(appendExtraInfo).then(appendFilePath).catch(notFound);
+};
+
+Movie.loadFromName = function(data) {
+  var filePath = data.file_path;
+  
+  var appendFilePath = function(data) {
+        data.file_path = filePath;
 
         return data;
       };
-
-  return TMDBMixin.search(fileName).then(getFirstResult).then(getFullInfo).then(appendFilePath);
+  
+  return TMDBMixin.search(data.name).then(getFirstResult).then(getFullInfo).then(appendExtraInfo).then(appendFilePath);
 };
 
 Movie.prototype.get = function(prop) {

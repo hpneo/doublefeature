@@ -16,7 +16,7 @@
     "url": "https://github.com/hpneo/doublefeature/issues"
   },
   "homepage": "https://github.com/hpneo/doublefeature",
-  "main": "app://doublefeature/index.html",
+  "main": "app://doublefeature_development/index.html",
   "single-instance": true,
   "window": {
     "title": "Double Feature",
@@ -25,7 +25,7 @@
     "height": 530,
     "min_width": 560,
     "min_height": 530,
-    "toolbar": false,
+    "toolbar": true,
     "position": "center",
     "show": true
   },

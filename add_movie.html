@@ -10,7 +10,7 @@
   <script type="text/javascript" src="/helpers/add_movie_helper.js"></script>
 </head>
 <body id="add_movie_view">
-  <header id="backdrop"></header>
+  <header class="loading_image" id="backdrop"></header>
   <form action="#" method="post" class="add_movie_wrapper">
     <fieldset>
       <legend>
@@ -53,7 +53,7 @@
         </ul>
       </div>
     </fieldset>
-    <img src="" id="movie_poster" title="Change poster">
+    <img src="" class="loading_image" id="movie_poster" title="Change poster">
     <div>
       <label for="movie_file_path">Location</label>
       <input type="text" id="movie_file_path" name="movie[file_path]">

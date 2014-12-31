@@ -61,51 +61,20 @@ var Application = (function() {
     win.focus();
 
     var Movie = require('./app/models/movie'),
-        Genre = require('./app/models/genre'),
-        MovieGenre = require('./app/models/movie_genre'),
-        ModelForm = require('./app/views/components/model_form');
-
-    var genres = document.querySelector('#movie_genres');
+        Genre = require('./app/models/genre');
 
     Genre.all().then(populateGenresList);
 
     document.body.classList.add('loading');
 
     Movie.loadFromFile(window.options.files[0]).then(function(data) {
-      var movie = new Movie(data),
-          modelForm = new ModelForm({
-            el: '.add_movie_wrapper',
-            modelName: 'movie',
-            model: movie,
-            afterSave: function(view, model) {
-              var ids = view.find('#movie_genres').val();
-
-              Genre.where({ id: ids }).load().then(function(records) {
-                var promises = records.map(function(genre) {
-                  var movieGenre = new MovieGenre({
-                    movie_id: model.id,
-                    genre_id: genre.id
-                  });
-
-                  return movieGenre.save();
-                });
-
-                return Promise.all(promises);
-              }).then(function() {
-                win.close();
-              });
-            }
-          });
-
-      selectGenres(data.genres, genres, 'data-tmdb_id');
-      setBackdrop('#backdrop', movie.backdrops['w780']);
-      setPoster('#movie_poster', movie.posters['w500']);
-
-      modelForm.render();
-
-      document.body.classList.remove('loading');
-
-      console.log(movie);
+      if (data.tmdb_id) {
+        setView(data);
+      }
+      else {
+        data.name = prompt('No se encontró información del archivo agregado, indícanos el nombre de la película:');
+        return Movie.loadFromName(data).then(setView);
+      }
     }).catch(console.log.bind(console));
   }
 

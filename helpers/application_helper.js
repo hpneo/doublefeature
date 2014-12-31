@@ -23,10 +23,10 @@ function loadStyle(path) {
 function showModal(path, options) {
   options.position = 'center';
   options.resizable = false;
-  options.toolbar = false;
+  options.toolbar = true;
 
   var gui = require('nw.gui');
-  var newModal = gui.Window.open('app://doublefeature/' + path + '.html', options);
+  var newModal = gui.Window.open('app://doublefeature_development/' + path + '.html', options);
 
   newModal.on('document-start', function() {
     newModal.window.options = options.options;

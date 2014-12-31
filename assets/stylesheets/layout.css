@@ -23,6 +23,11 @@ body {
   cursor: wait;
 }
 
+.loading_image {
+  background: url('/assets/images/loader-bar.gif') no-repeat center center;
+  background: contain;
+}
+
 a {
   text-decoration: none;
   cursor: default;
@@ -34,9 +39,7 @@ input {
 }
 
 header#backdrop {
-  /*background: url('https://image.tmdb.org/t/p/original/j8iM6B5HwZ8sojjM6kJbVniMKTh.jpg') no-repeat center center;*/
   height: 150px;
-  background-size: 100% auto;
 }
 
 .library_wrapper {
