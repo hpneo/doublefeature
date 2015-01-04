@@ -13,7 +13,8 @@ function showSidebar() {
 }
 
 function populateGenresList(genres) {
-  var TreeView = require('./app/views/components/tree_view.js');
+  var TreeView = require('./app/views/components/tree_view.js'),
+      MovieGenre = require('./app/models/movie_genre');
   
   var treeView = new TreeView({
     el: '#sidebar_genres_container',
@@ -22,7 +23,21 @@ function populateGenresList(genres) {
       title: 'Genres',
       allText: 'All',
       className: 'genres with_icon',
-      id: 'sidebar_genres'
+      id: 'sidebar_genres',
+      onDrop: function(e) {
+        var genreId = e.target.dataset.id,
+            movieId = e.originalEvent.dataTransfer.getData('text/plain');
+
+        e.target.classList.remove('selected');
+
+        console.log(genreId, movieId);
+        MovieGenre.where({ genre_id: genreId, movie_id: movieId }).load().then(function(records) {
+          if (records.length === 0) {
+            var movieGenre = new MovieGenre({ genre_id: genreId, movie_id: movieId });
+            movieGenre.save();
+          }
+        });
+      }
     }
   });
 

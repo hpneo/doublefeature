@@ -16,6 +16,7 @@
   width: 150px;
   height: 225px;
   margin: 10px;
+  -webkit-user-drag: element;
 }
 
 .listview .listview_item .poster {

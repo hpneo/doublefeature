@@ -23,6 +23,11 @@ var TreeViewComponent = React.createClass({
 });
 
 var TreeView = Backbone.View.extend({
+  events: {
+    'dragover dl': 'handleDragOver',
+    'dragleave dl': 'handleDragLeave',
+    'drop dl': 'handleDrop'
+  },
   initialize: function(options) {
     this.renderOptions = options.renderOptions;
 
@@ -36,6 +41,32 @@ var TreeView = Backbone.View.extend({
     }
 
     this.reactElement.setProps({ items: collection });
+  },
+  handleDragOver: function(e) {
+    if (e.preventDefault) {
+      e.preventDefault();
+    }
+
+    if (e.target.dataset.id) {
+      e.target.classList.add('selected');
+      e.originalEvent.dataTransfer.dropEffect = 'copy';
+    }
+
+    return false;
+  },
+  handleDragLeave: function(e) {
+    e.target.classList.remove('selected');
+  },
+  handleDrop: function(e) {
+    if (e.stopPropagation) {
+      e.stopPropagation();
+    }
+
+    if (e.target.dataset.id) {
+      if (this.renderOptions.onDrop) {
+        this.renderOptions.onDrop.call(this, e);
+      }
+    }
   },
   render: function() {
     this.renderOptions.items = this.collection;

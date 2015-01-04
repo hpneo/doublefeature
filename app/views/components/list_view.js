@@ -21,7 +21,7 @@ var ListViewComponent = React.createClass({
         image = listItemFields.image.call(object);
       }
 
-      return React.createElement('div', { className: 'listview_item', 'data-id': id },
+      return React.createElement('div', { className: 'listview_item', 'data-id': id, draggable: true },
         React.createElement('img', { src: image, className: 'poster' }),
         React.createElement('span', null, text)
       );
@@ -34,6 +34,9 @@ var ListViewComponent = React.createClass({
 });
 
 var ListView = Backbone.View.extend({
+  events: {
+    'dragstart .listview_item': 'setDraggableData'
+  },
   initialize: function(options) {
     this.renderOptions = options.renderOptions;
 
@@ -55,12 +58,14 @@ var ListView = Backbone.View.extend({
     this.reactElement.setProps({ items: collection });
     this.trigger('collection_changed');
   },
+  setDraggableData: function(e) {
+    var dataTransfer = e.originalEvent.dataTransfer;
+    dataTransfer.effectAllowed = 'copy';
+    dataTransfer.setData('text/plain', e.target.dataset.id);
+  },
   render: function() {
     this.renderOptions.items = this.collection;
     this.originalCollection = this.collection.slice(0);
-
-    var temporaryContainer = window.document.createDocumentFragment();
-    temporaryContainer.appendChild(window.document.createElement('div'));
 
     var listViewComponent = React.createElement(ListViewComponent, this.renderOptions),
         element = React.render(listViewComponent, this.el);

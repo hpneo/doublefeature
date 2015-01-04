@@ -62,7 +62,7 @@ function setView(data) {
 
             return Promise.all(promises);
           }).then(function() {
-            win.close();
+            window.close();
           });
         }
       });
